@@ -24,6 +24,11 @@ address:{
     type:String,
     
 },
+ user:{
+
+    type: mongoose.Schema.ObjectId,
+    ref:"User"
+ }
 
 
 },
@@ -35,5 +40,9 @@ address:{
 
 
 );
+tourSchema.pre(/^find/,function(next){
+    this.populate({path:"user",select:"lastName email  ddress"});
+    next();
+})
 const tour= mongoose.model("Tour",tourSchema);
 export default tour;

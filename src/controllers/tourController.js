@@ -3,9 +3,11 @@ import tourInfo from "../models/tour";
 
 class TourController {
 
-    
+  
+
 
     static async createTour(req,res){
+        req.body.user="req.user._id"
         const tour = await tourInfo.create(req.body)
 
         if(!tour){
